@@ -11,3 +11,32 @@ body {
 	font-size: 17px;
 	background: darkgreen;
 }
+
+#time {
+	animation-name: blink;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes blink {
+	0%{
+		color: white;
+	}
+
+	20%{
+		color: orange;
+	}
+	40% {
+		color: black;
+	}
+	60%{
+		color: green;
+	}
+	80%{
+		color: blue;
+	}
+	100% {
+		color: red;
+	}
+}
+

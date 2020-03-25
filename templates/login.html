@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="row">
+		<div class="col-md-12">
+			<div class="">
+				<form action="" method="POST" role="form">
+					{% csrf_token %}
+					<div class="table-responsive">
+						<table class="table">
+							<tr>
+								<td class="text-right">
+									<label for="id_username">Enter username:</label>
+								</td>
+								<td>
+									{{form.username}}
+								</td>
+							</tr>
+							<tr>
+								<td class="text-right">
+									<label for="id_password">Enter Password:</label>
+								</td>
+								<td>
+									{{form.password}}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									
+								</td>
+								<td>
+									<button type="submit" class="btn btn-success btn-lg">
+										Log in <i class="fa fa-sign-in"></i>
+									</button>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

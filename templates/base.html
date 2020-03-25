@@ -4,6 +4,7 @@
 	<head>
 		<meta charset='UTF-8'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<meta http-equiv="refresh" content="60">
 		<link rel='stylesheet' type='text/css' href="{% static 'css/bootstrap.min.css' %}">
 		<title>{{title}}</title>
 		<link rel="stylesheet" type='text/css' href="{% static 'css/user_styles.css' %}">
@@ -11,40 +12,58 @@
 	</head>
 	<body>
 		<div class='container'>
-				<!-- head section design -->
-	<div class="row badge-primary">
-		<div class="col-md-2"> 
-			<!-- user profile -->
-		<i class="fa fa-user"> 
-		{% if is_user_logged_in %}
-		{{request.session.username}}
-		{% else %}
-		User
-		{% endif %}
-		</i> 
-		</div>
-		<div class="col-md-8">
-			<h2 class="text-center text-uppercase text-white">Transaction Accountant</h2>
-		</div>
-		<div class="col-md-1">
-			<!-- Sign in -->
-			<div class="link text-center">
-				<a href="/sign_up" class="text-white">Signup</a>
+			<!-- head section design -->
+			<div class="row badge-primary">
+				<div class="col-md-2">
+					<!-- user profile -->
+					<i class="fa fa-user">
+					{% if is_user_logged_in %}
+						{{request.session.name}}
+					{% else %}
+						<i>User</i>
+					{% endif %}
+					</i>
+				</div>
+				<div class="col-md-1">
+					<!-- Time Display -->
+					<div class="text-center font-weight-bold">
+						Time:
+						<div id="time">
+							{{request.session.time}}
+						</div>
+					</div>
+				</div>
+				<div class="col-md-5">
+					<a href="/home" id="nounderline">
+						<h2 class="text-center text-uppercase text-white">Transaction Accountant</h2>
+					</a>
+				</div>
+				<div class="col-md-2">
+					<!-- Sign in -->
+					<div class="link text-center">
+						<a href="/sign_up" class="text-white fa fa-sign-in"> Signup</a>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<!-- Log in -->
+					<div class="link text-center">
+						<a href="/login" class="text-white fa fa-sign-in"> Login</a>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="col-md-1">
-			<!-- Log in -->
-			<div class="link text-center">
-				<a href="/login" class="text-white">Login</a>
+			<hr>
+			{% block content %}
+				<!-- Code will be here -->
+			{% endblock %}
+			<div class="row">
+				<div class="col-md-12">
+					<div class="text-center">
+						{% now "Y" %}&copy; Copyright by <strong class="font-italic text-uppercase">Mehedi Hasan.</strong>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<hr>
-		{% block content %}
-			<!-- Code will be here -->
-		{% endblock %}
 		</div>
 		<script src="{% static 'js/jquery.js' %}"></script>
 		<script src="{% static 'js/bootstrap.min.js' %}"></script>
 	</body>
-</html>	
+</html>

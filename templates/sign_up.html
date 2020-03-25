@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+	<div class="form-group">
+			<div class="table-responsive">
+				<table class="table">
+					<tr> 
+						<!-- 1st row -->
+						<td class="text-right">
+							Enter your First name:
+						</td>
+						<td>
+							{{form.first_name}}
+						</td>
+					</tr>
+					<tr>
+						<!-- 2nd row -->
+						<td class="text-right">
+							Enter your Last name:
+						</td>
+						<td>
+							{{form.last_name}}
+						</td>
+					</tr>
+					<tr>
+						<!-- 3rd row -->
+						<td class="text-right">
+							Enter Username:
+						</td>
+						<td>
+							{{form.username}}
+						</td>
+					</tr>
+					<tr>
+						<!-- 4th row -->
+						<td class="text-right">
+							Enter password:
+						</td>
+						<td>
+							{{form.password}}
+						</td>
+					</tr>
+					<tr>
+						<!-- 5th row -->
+						<td class="text-right">
+							Confirm password:
+						</td>
+						<td>
+							{{form.confirm_password}}
+						</td>
+					</tr>
+					<tr>
+						<!-- 6th row -->
+						<td class="text-right">
+							Contact No. :
+						</td>
+						<td>
+							{{form.contact_no}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							
+						</td>
+						<td>
+							<button type="submit" class="btn btn-primary">Create Account
+						<i class="fa fa-sign-in"></i>
+						</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
