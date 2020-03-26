@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<div class="row">
+		<div class="col-md-4">
+			<!-- blank -->
+		</div>
+		<div class="col-md-4">
+			<!-- description -->
+			<h3>Introduction</h3>
+			<hr>
+			<p>
+				Hello, I am Mehedi Hasan. Who created the transactional Accountant web application. 				
+			</p>
+			<h3>About the app:</h3>
+			<hr>
+			<p>
+				This app saves the transaction data you made. So, you don't need any small piece of exercise book to store your transactional information. 
+			</p>
+			<h3>About me:</h3>
+			<hr>
+			<p>
+				I love to develop apps using different types of language. I love to lern new language to make better appliction with better performance. Yeah, i have the answer of your question, I always mainly focused in Python. Because, you should become a specialist in a specific language and knowing at least little bit of other languages.
+				<br>
+				<hr>
+				<strong>Thank you.</strong>
+			</p>
+		</div>
+		<div class="col-md-4">
+			<!-- owner-image -->
+			<img src="{% static 'images/mehedi.jpg' %}" alt="Mehedi Hasan"
+			class="rounded-czircle" width="150" height="150">
+		</div>
+	</div>
+{% endblock %}

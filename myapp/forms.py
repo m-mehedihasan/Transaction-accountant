@@ -7,12 +7,10 @@ class UsersForm(forms.ModelForm):
 		widgets = {
 		'first_name': forms.TextInput(attrs={'placeholder':'Enter your First Name'}),
 		'last_name': forms.TextInput(attrs={'placeholder':'Enter your Last Name'}),
-		'username': forms.TextInput(attrs={'placeholder':'Enter a username'}),
-		'password': forms.TextInput(attrs={'placeholder':'Enter a password'}),
-		'confirm_password': forms.TextInput(attrs={'placeholder':'Re-enter the password'}),
+		'username': forms.TextInput(attrs={'placeholder':'Enter a username', 'type': 'email'}),
+		'password': forms.TextInput(attrs={'placeholder':'Enter a password', 'type': 'password'}),
+		'confirm_password': forms.TextInput(attrs={'placeholder':'Re-enter the password', 'type': 'password'}),
 		'contact_no': forms.TextInput(attrs={'placeholder':'Enter your contact number'}),
-		'password': forms.PasswordInput(),
-		'confirm_password': forms.PasswordInput(),
 		
 		}
 		fields = "__all__"
