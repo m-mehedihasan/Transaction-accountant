@@ -1,65 +1,77 @@
 {% extends 'base.html' %}
 {% block content %}
-	<div class="row">
-		<div class="col-md-12">
-			<div class="">
+	{% if 'username' not in request.session %}
+		<div class="row">
+			<div class="col-md-3">
+							
+			</div>
+			<div class="col-md-6">
 				<form action="/login" method="POST" role="form">
 					{% csrf_token %}
-					<div class="table-responsive">
-					{% if messages %}
-						<caption>
+					<div class="form-group">
+						<div class="table-responsive">
+							{% if messages %}
+								<caption>
 								<div class="text-center">
 									{% for message in messages %}
-								  {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-								  <div class="alert alert-success">
-								  	<strong>Great! </strong> {{message}}
-								  </div>
-								  {% endif %}
-								  <!-- if any error occure then-> -->
-								  {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-								 	<div class="alert alert-danger">
-								 		 <strong>ERROR: </strong> {{message}}
-								 	</div>
-								  {% endif %}
-								{% endfor %}
+										{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+											<div class="alert alert-success">
+												<strong>Great! </strong> {{message}}
+											</div>
+										{% endif %}
+										<!-- if any error occure then-> -->
+										{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+											<div class="alert alert-danger">
+												<strong>ERROR: </strong> {{message}}
+											</div>
+										{% endif %}
+									{% endfor %}
 								</div>
-							</caption>
-						{% endif %}
-						<table class="table">
-							
-							<tbody>
-								<tr>
-								<td class="text-right">
-									<label for="id_username">Enter username:</label>
-								</td>
-								<td>
-									{{form.username}}
-								</td>
-							</tr>
-							<tr>
-								<td class="text-right">
-									<label for="id_password">Enter Password:</label>
-								</td>
-								<td>
-									{{form.password}}
-								</td>
-							</tr>
-							<tr>
-								<td>
-									
-								</td>
-								<td>
-									<button type="submit" class="btn btn-success btn-lg">
-									Log in <i class="fa fa-sign-in"></i>
-									</button>
-								</td>
-							</tr>
-							</tbody>
-							
-						</table>
-					</form>
-				</div>
+								</caption>
+							{% endif %}
+							<table class="table">
+								
+								<tbody>
+									<tr>
+										<td>
+											<label for="id_username" class="form-control text-center text-capitalize font-weight-bold badge-info">Enter username:</label>
+										</td>
+										<td>
+											{{form.username}}
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label for="id_password" class="form-control text-capitalize text-center font-weight-bold badge-info">Enter Password:</label>
+										</td>
+										<td>
+											{{form.password}}
+										</td>
+									</tr>
+									<tr>
+										<td>
+											
+										</td>
+										<td>
+											<button type="submit" class="btn btn-success btn-lg" name="login" value="Log in" id="id_login">
+											Log in <i class="fa fa-sign-in"></i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+								
+							</table>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+			<div class="col-md-3">
+				
 			</div>
 		</div>
-	</div>
+		
+	{% else %}
+		<meta http-equiv="refresh" content="0; url=/home">
+	{% endif %}
 {% endblock %}

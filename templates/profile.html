@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="row">
+		<div class="col-md-3">
+			<div class="text-info">
+				<h5>Your personal Information :	</h5>
+			</div>
+			<div class="table-responsive">
+				<table class="table-active">
+					<tr>
+						<td>
+							<div class="form-control badge-info">
+								Your TA ID :
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="form-control badge-warning">
+								{{ta_id}}
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<!-- user info -->
+			{% if messages %}
+				
+				<!-- Perimit to edit -->
+				<div class="table-responsive">
+					<table class="table table-hover table-striped">
+						<tr>
+							<td>
+								<label for="id_first_name" class="form-control text-center text-capitalize badge-info" >
+									first name :
+								</label>
+							</td>
+							<td>
+								<input type="text" value="{{user.first_name}}"  class="form-control">
+							</td>
+						</tr>
+						<tr>
+							<td><label for="id_last_name" class="form-control text-center text-capitalize badge-info">
+								last name :
+							</label></td>
+							<td>
+								<input type="text" value="{{user.last_name}}" class="form-control">
+							</td>
+						</tr>
+						<tr>
+							<td><label for="id_username" class="form-control text-center text-capitalize badge-info">
+								username :
+							</label></td>
+							<td>
+								<input type="text" value="{{user.username}}" class="form-control">
+							</td>
+						</tr>
+						<tr>
+							<td><label for="id_password" class="form-control text-center text-capitalize badge-info">
+								password :
+							</label></td>
+							<td>
+								<input type="text" value="{{user.password}}" class="form-control">
+							</td>
+						</tr>
+						<tr>
+							<td><label for="id_contact_no" class="form-control text-center text-capitalize badge-info">
+								contact no. :
+							</label></td>
+							<td>
+								<input type="text" value="{{user.contact_no}}" class="form-control">
+							</td>
+						</tr>
+					</table>
+					<a href="/update">
+						<button type="sumit" name="btn_update" id="id_btn_update"
+						class="btn btn-success text-capitalize font-weight-bold text-white">update information</button>
+					</a>
+				</div>
+				{% for message in messages %}
+					<!-- move message cursor -->
+				{% endfor %}
+			{% else %}
+				
+				<div class="table-responsive">
+					<table class="table table-hover table-striped">
+						<tr>
+							<td>
+								<label for="id_first_name" class="form-control text-center text-capitalize badge-info">
+									first name :
+								</label>
+							</td>
+							<td>
+								<input type="text" value="{{user.first_name}}" disabled="true" class="form-control">
+							</td>
+						</tr>
+						<tr>
+							<td><label for="id_last_name" class="form-control text-center text-capitalize badge-info">
+								last name :
+							</label></td>
+							<td>
+								<input type="text" value="{{user.last_name}}" disabled="true" class="form-control">
+							</td>
+						</tr>
+						<tr>
+							<td><label for="id_username" class="form-control text-center text-capitalize badge-info">
+								username :
+							</label></td>
+							<td>
+								<input type="text" value="{{user.username}}" disabled="true" class="form-control">
+							</td>
+						</tr>
+						<tr>
+							<td><label for="id_password" class="form-control text-center text-capitalize badge-info">
+								password :
+							</label></td>
+							<td>
+								<input type="text" value="{{user.password}}" disabled="true" class="form-control">
+							</td>
+						</tr>
+						<tr>
+							<td><label for="id_contact_no" class="form-control text-center text-capitalize badge-info">
+								contact no. :
+							</label></td>
+							<td>
+								<input type="text" value="{{user.contact_no}}" disabled="true" class="form-control">
+							</td>
+						</tr>
+					</table>
+					<a href="/service">
+						<button type="edit" class="btn btn-outline-success text-capitalize font-weight-bold text-white badge-secondary">Edit personal information</button>
+					</a>
+				</div>
+			{% endif %}
+			
+		</div>
+		<div class="col-md-3">
+			<!-- others -->
+		</div>
+	</div>
+{% endblock %}

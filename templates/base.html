@@ -5,7 +5,6 @@
 		<meta charset='UTF-8'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
 		<link rel='stylesheet' type='text/css' href="{% static 'css/bootstrap.min.css' %}">
-		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  Online Development -->
 		<title>{{title}}</title>
 		<link rel="stylesheet" type='text/css' href="{% static 'css/user_styles.css' %}">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,24 +13,19 @@
 		<div class='container'>
 			<!-- head section design -->
 			<div class="row badge-primary">
-				<div class="col-md-2">
+				<div class="col-md-3">
 					<!-- user profile -->
 					<i class="fa fa-user">
-					{% if is_user_logged_in %}
-						{{request.session.name}}
+					{% if 'username' in request.session %}
+						Logged in as, <p>
+							<a href="/profile" class="text-white">
+								<strong>{{request.session.username}}</strong>
+							</a>
+						</p>
 					{% else %}
 						<i>User</i>
 					{% endif %}
 					</i>
-				</div>
-				<div class="col-md-1">
-					<!-- Time Display -->
-					<div class="text-center font-weight-bold">
-						Time:
-						<div id="time">
-							{{request.session.time}}
-						</div>
-					</div>
 				</div>
 				<div class="col-md-5">
 					<a href="/home" id="nounderline">
@@ -40,32 +34,33 @@
 				</div>
 				<div class="col-md-2">
 					<!-- Sign in -->
-					<div class="link text-center">
-						<a href="/sign_up" class="text-white fa fa-sign-in"> Signup</a>
-					</div>
+					{% if 'username' not in request.session %}
+						<div class="link text-center">
+							<a href="/sign_up" class="text-white fa fa-sign-in"> Signup</a>
+						</div>
+					{% endif %}
 				</div>
 				<div class="col-md-2">
 					<!-- Log in -->
-					<div class="link text-center">
-						<a href="/login" class="text-white fa fa-sign-in"> Login</a>
-					</div>
+					{% if 'username' in request.session %}
+						<div class="link text-center">
+							<a href="/logout" class="text-white fa fa-sign-out">Logout</a>
+						</div>
+					{% else %}
+						<div class="link text-center">
+							<a href="/login" class="text-white fa fa-sign-in"> Login</a>
+						</div>
+					{% endif %}
 				</div>
 			</div>
 			<hr>
 			{% block content %}
 				<!-- Code will be here -->
 			{% endblock %}
-			<div class="row">
-				<div class="col-md-12">
-					<div class="text-center">
-						{% now "Y" %} Copyright@<a href="/owner" class="font-italic font-weight-bold">Mehedi Hasan</a>, All rights reserved.
-					</div>
-				</div>
-			</div>
+			
 		</div>
 		<script src="{% static 'js/jquery.js' %}"></script>
 		<script src="{% static 'js/bootstrap.min.js' %}"></script>
-		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
-		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+		
 	</body>
 </html>

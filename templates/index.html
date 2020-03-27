@@ -13,7 +13,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						{% if is_user_logged_in %}
+						<!-- incomplete -->
+						{% if 'username' in request.session %}
 							{% for list_val in transaction_list %}
 								<tr>
 									<td>
@@ -36,17 +37,12 @@
 		</div>
 		<div class="col-md-8">
 			<!-- Output screen -->
-			{% for message in messages %}
-					{% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
-					{{message}}
-					{% endif %}
-			{% endfor %}
+			{% if 'username' in request.session %}
+				<div class="alert alert-success">
+					<strong>SUCCESS!</strong> You're successfully logged in.
+				</div>
+			{% endif %}
 		</div>
 	</div>
-
-
-
-
-
 	
 {% endblock %}
