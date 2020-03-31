@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="row">
+		<div class="col-md-3">
+			
+		</div>
+		<div class="col-md-6">
+			<form action="/update">
+				<div class="form-group">
+					<table class="table">
+						{% for field in form %}
+							<tr>
+								<td>
+									<div class="form-control badge-info">
+										{{field.label}}		
+									</div>
+								</td>
+								<td>
+									{{field}}
+								</td>
+							</tr>
+						{% endfor %}
+					</table>
+						<button type="submit" name='btn_submit_test' class="form-control btn btn-primary font-weight-bold">Update</button>
+					
+				</div>
+			</form>
+			
+		</div>
+		<div class="col-md-3">
+			<!-- show exceptions -->
+			{{exception}}
+		</div>
+	</div>
+{% endblock %}

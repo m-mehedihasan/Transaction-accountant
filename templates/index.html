@@ -9,19 +9,18 @@
 						<tr>
 							<th>
 								transaction list
+								<div class="badge badge-success">1</div>
 							</th>
 						</tr>
 					</thead>
 					<tbody>
 						<!-- incomplete -->
 						{% if 'username' in request.session %}
-							{% for list_val in transaction_list %}
-								<tr>
-									<td>
-										{{list_val}}
-									</td>
-								</tr>
-							{% endfor %}
+							<tr>
+								<td>
+									Editing
+								</td>
+							</tr>
 						{% else %}
 							<tr>
 								<td>
@@ -35,12 +34,47 @@
 				</table>
 			</div>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-6">
 			<!-- Output screen -->
 			{% if 'username' in request.session %}
-				<div class="alert alert-success">
-					<strong>SUCCESS!</strong> You're successfully logged in.
+				{% if messages %}
+					{% for message in messages %}
+						{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+							<form action="/create_list" class="" method="post">
+								
+								<div class="table-responsive">
+								<table class="table">
+									 {% csrf_token %}
+									{% for field in transaction_list_form %}
+										<tr>
+											<td>
+												<div class="form-control text-capitalize bg-success text-white">
+													{{field.label}}
+												</div>
+											</td>
+											<td>
+												{{field}}
+											</td>
+										</tr>										
+									{% endfor %}
+								</table>
+							</div>
+							<button class="form-control btn btn-info font-weight-bold" name="submit" id='id_submit'>Submit</button>
+							</form>
+							
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+			{% endif %}
+		</div>
+		<div class="col-md-2">
+			{% if 'username' in request.session %}
+				<div class="text-right">
+					<a href="/create_list" class="text-white btn btn-primary">
+						<i class="fa fa-plus-circle"></i> Create new list
+					</a>
 				</div>
+				
 			{% endif %}
 		</div>
 	</div>

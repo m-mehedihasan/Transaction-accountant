@@ -10,5 +10,8 @@ urlpatterns = [
  path('profile', views.profile, name='profile'),
  path('service', views.service, name='service'),
  path('update', views.update, name='update'),
+ path('test', views.test, name='test'),
+ path('create_list', views.create_list, name='create_list'),
+
 ]
 

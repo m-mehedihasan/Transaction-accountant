@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from myapp.forms import UsersForm
+from myapp.forms import UsersForm, UsersFormShow, TransactionListForm
 from django.http import *
 from datetime import datetime as dt
 from django.contrib import messages
 from .models import Users
+
 
 def home(request):
 	title = 'Transaction Accountant || Home'
@@ -104,20 +105,59 @@ def profile(request):
 		ta_id = (user.first_name + '.' + user.last_name + '_' + str(user.id)).lower()
 		context['ta_id'] = ta_id
 		context['name'] = name
-		form = UsersForm(Users.objects.get(username = request.session['username']))
-		context['form'] = form
+		show_form = UsersFormShow(instance=user)
+		context['show_form'] = show_form
+		context['form'] = UsersForm(instance=user)
 		return render(request, template_name, context)
 	except:
-		return redirect('/home')
-		pass	
+		return redirect('/home')	
 
 
 def service(request):
-	context = {}
 	message = 'Should edit'
 	messages.info(request, message)
 	return redirect('/profile')
 
-def update(request):
-	return redirect('/home')
+
+def update(request): #Form validation error...
+	#if request.method == 'POST':
+	form = UsersForm(data=request.POST)
+	if form.is_valid():
+		return redirect('/home')
+		user = Users.objects.get(username = request.session['username'])
+		form = UsersForm(instance=user, data=request.POST)
+		form.save()
+	else:
+		messages.info(request, 'edit mode')
+		return redirect('/profile')
+	
+
+	
+
+def test(request):
+	context = {}
+	template_name = 'test.html'
+	user = Users.objects.get(username=request.session['username'])
+	form = UsersFormShow(instance=user)
+	context['user'] = user
+	context['form'] = form
+	return render(request, template_name, context)
+
+def create_list(request):
+	template_name = 'index.html'
+	context = {} 
+	if request.method == 'POST':
+		form = TransactionListForm(request.POST)
+		if form.is_valid():
+			return redirect('test')
+		else:
+			messages.success(request, 'edit_view')
+			form = TransactionListForm()
+			context['transaction_list_form'] = form 
+	else:
+		messages.success(request, 'edit_view')
+		form = TransactionListForm()
+		context['transaction_list_form'] = form 
+
+	return render(request, template_name, context)
 #END

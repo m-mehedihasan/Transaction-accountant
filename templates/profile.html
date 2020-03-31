@@ -2,9 +2,10 @@
 {% block content %}
 	<div class="row">
 		<div class="col-md-3">
-			<div class="text-info">
-				<h5>Your personal Information :	</h5>
+			<div class="text-center font-weight-bold form-control badge-pill badge-success">
+				Welcome, {{name}}
 			</div>
+			<br>
 			<div class="table-responsive">
 				<table class="table-active">
 					<tr>
@@ -16,7 +17,7 @@
 					</tr>
 					<tr>
 						<td>
-							<div class="form-control badge-warning">
+							<div class="form-control-plaintext badge-warning">
 								{{ta_id}}
 							</div>
 						</td>
@@ -25,119 +26,130 @@
 			</div>
 		</div>
 		<div class="col-md-6">
+			<div class="text-center text-capitalize badge-secondary badge-pill
+				font-weight-bold form-control">
+				Your profile dashboard
+			</div>
+			<br>
 			<!-- user info -->
 			{% if messages %}
-				
-				<!-- Perimit to edit -->
-				<div class="table-responsive">
-					<table class="table table-hover table-striped">
-						<tr>
-							<td>
-								<label for="id_first_name" class="form-control text-center text-capitalize badge-info" >
-									first name :
-								</label>
-							</td>
-							<td>
-								<input type="text" value="{{user.first_name}}"  class="form-control">
-							</td>
-						</tr>
-						<tr>
-							<td><label for="id_last_name" class="form-control text-center text-capitalize badge-info">
-								last name :
-							</label></td>
-							<td>
-								<input type="text" value="{{user.last_name}}" class="form-control">
-							</td>
-						</tr>
-						<tr>
-							<td><label for="id_username" class="form-control text-center text-capitalize badge-info">
-								username :
-							</label></td>
-							<td>
-								<input type="text" value="{{user.username}}" class="form-control">
-							</td>
-						</tr>
-						<tr>
-							<td><label for="id_password" class="form-control text-center text-capitalize badge-info">
-								password :
-							</label></td>
-							<td>
-								<input type="text" value="{{user.password}}" class="form-control">
-							</td>
-						</tr>
-						<tr>
-							<td><label for="id_contact_no" class="form-control text-center text-capitalize badge-info">
-								contact no. :
-							</label></td>
-							<td>
-								<input type="text" value="{{user.contact_no}}" class="form-control">
-							</td>
-						</tr>
-					</table>
-					<a href="/update">
-						<button type="sumit" name="btn_update" id="id_btn_update"
-						class="btn btn-success text-capitalize font-weight-bold text-white">update information</button>
-					</a>
+		
+		{% for message in messages %}
+			{% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+					<form action="/update" method="POST" role="form">
+					{% csrf_token %}
+					<div class="form-group">
+						<!-- Perimit to edit -->
+						<div class="table-responsive">
+							<table class="table table-hover table-striped">
+								
+								<tr>
+									<td>
+										<div class="form-control text-center text-capitalize badge-info">
+											first name
+										</div>
+									</td>
+									<td>
+										<input type="text" value="{{user.first_name}}"  class="form-control" name="first_name" id="id_first_name">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="form-control text-center text-capitalize badge-info">
+											last name
+										</div>
+									</td>
+									<td>
+										<input type="text" value="{{user.last_name}}" class="form-control" name="last_name" id="id_last_name">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="form-control text-center text-capitalize badge-info">
+											username
+										</div>
+									</td>
+									<td>
+										<input type="text" value="{{user.username}}" class="form-control" name="username" id="id_username" readonly="true">
+										<div class="alert alert-danger">
+											You won't be able to change your username
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="form-control text-center text-capitalize badge-info">
+											password
+										</div>
+									</td>
+									<td>
+										<input type="text" value="{{user.password}}" class="form-control" name="password" id="id_password">
+									</td>
+								</tr>
+								
+								<tr>
+									<td>
+										<div class="form-control text-center text-capitalize badge-info">
+											contact no
+										</div>
+									</td>
+									<td>
+										<input type="text" value="{{user.contact_no}}" class="form-control" name="contact_no" id="id_contact_no">
+									</td>
+								</tr>
+							</table>
+							
+							<a href="/home" class="btn btn-success text-center text-capitalize font-weight-bold ">go home
+								<i class="fa fa-undo"></i>
+							</a>
+							
+							
+							<!-- submit button will be here -->
+							<button type="submit" name="update" id="id_update"
+							class="btn btn-success text-capitalize font-weight-bold text-white">
+							update information
+							<i class="fa fa-sign-in"></i>
+							</button>
+							
+							
+						</div>
+					</div>
+					
 				</div>
-				{% for message in messages %}
-					<!-- move message cursor -->
-				{% endfor %}
-			{% else %}
-				
-				<div class="table-responsive">
-					<table class="table table-hover table-striped">
-						<tr>
-							<td>
-								<label for="id_first_name" class="form-control text-center text-capitalize badge-info">
-									first name :
-								</label>
-							</td>
-							<td>
-								<input type="text" value="{{user.first_name}}" disabled="true" class="form-control">
-							</td>
-						</tr>
-						<tr>
-							<td><label for="id_last_name" class="form-control text-center text-capitalize badge-info">
-								last name :
-							</label></td>
-							<td>
-								<input type="text" value="{{user.last_name}}" disabled="true" class="form-control">
-							</td>
-						</tr>
-						<tr>
-							<td><label for="id_username" class="form-control text-center text-capitalize badge-info">
-								username :
-							</label></td>
-							<td>
-								<input type="text" value="{{user.username}}" disabled="true" class="form-control">
-							</td>
-						</tr>
-						<tr>
-							<td><label for="id_password" class="form-control text-center text-capitalize badge-info">
-								password :
-							</label></td>
-							<td>
-								<input type="text" value="{{user.password}}" disabled="true" class="form-control">
-							</td>
-						</tr>
-						<tr>
-							<td><label for="id_contact_no" class="form-control text-center text-capitalize badge-info">
-								contact no. :
-							</label></td>
-							<td>
-								<input type="text" value="{{user.contact_no}}" disabled="true" class="form-control">
-							</td>
-						</tr>
-					</table>
-					<a href="/service">
-						<button type="edit" class="btn btn-outline-success text-capitalize font-weight-bold text-white badge-secondary">Edit personal information</button>
-					</a>
-				</div>
+			</div>
+		</form>
+		
 			{% endif %}
-			
+		{% endfor %}
+	{% else %}
+		<div class="form-group">
+			<div class="table-responsive">
+				<table class="table table-hover table-striped">
+					{% for field in form %}
+						<tr>
+							<td>
+								<div class="text-center text-capitalize badge-info form-control">
+									{{field.label}}
+								</div>
+							</td>
+							<td>
+								{{field}}
+							</td>
+						</tr>
+					{% endfor %}
+				</table>
+				<a href="/service">
+					<button type="edit" class="btn btn-success text-capitalize font-weight-bold text-white">Edit personal information
+					<i class="fa fa-edit"></i>
+					</button>
+				</a>
+			</div>
 		</div>
-		<div class="col-md-3">
-			<!-- others -->
-		</div>
-	</div>
+	{% endif %}
+	
+</div>
+<div class="col-md-3">
+	
+</div>
+</div>
 {% endblock %}
